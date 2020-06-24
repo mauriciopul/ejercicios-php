@@ -8,44 +8,45 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
     <title>Resultados</title>
+    
     <?php
 
-    $cedula = $_POST[cedula];
-    $nombre = $_POST[nombre];
-    $monto = $_POST[monto];
-    $interes = $_POST[tasaInteres] ;
+    $cedula = $_POST["cedula"];
+    $nombre = $_POST["nombre"];
+    $monto = $_POST["monto"];
+    $interes = $_POST["tasaInteres"] ;
     $tasaInteres = $interes / 100;
-    $plazo = $_POST[plazo];
+    $plazo = $_POST["plazo"];
     $x = ((1 + $tasaInteres) ** $plazo);
 
     $dividento = $tasaInteres * $x;
     $divisor = $x - 1;
 
-    echo "Cedula: $cedula <br /><br />";
+   /*  echo "Cedula: $cedula <br /><br />";
     echo "Nombre: $nombre <br /><br />";
-    echo "Monto: $$monto <br /><br />";
+    echo "Monto: $monto <br /><br />";
     echo "Interes: $interes%<br /><br />";
-    echo "Plazo: $plazo  meses<br /><br />";
+    echo "Plazo: $plazo  meses<br /><br />"; */
 
     $cuotaFija = $monto * ($dividento / $divisor);
     $cuota = number_format($cuotaFija, 2, '.', '');
 
-    echo "Cuota: $ $cuota <br /><br />";
+  /*   echo "Cuota: $ $cuota <br /><br />"; */
 
     ?>
   </head>
-  <body>
+  <body class="bg-secondary">
 
 <?php
   for ($i=0; $i < $plazo+1; $i++) {
     // code...
-    echo "cuotas <br />";
+/*     echo "cuotas <br />"; */
   }
  ?>
 
      <div class="container">
 
-     <table class="table table-dark">
+     <table class="table table-dark table-hover table-bordered">
        <thead>
          <tr>
            <th scope="col">Cedula</th>
@@ -81,7 +82,9 @@
     </div>
 
 
-
-    <a href="../index.html"><button type="button" name="regresar">Regresar</button></a>
+      <div class="d-flex justify-content-center">
+        <a href="../index.html"><button type="button" class="btn btn-primary " name="regresar">Regresar</button></a>
+      </div>
+    
   </body>
 </html>
