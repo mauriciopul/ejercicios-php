@@ -20,6 +20,10 @@
 
     $dividento = $tasaInteres * $x;
     $divisor = $x - 1;
+    $titulos = array('N° Cuota','Saldo Anterior',' 	Valor Cuota Fija',' 	Abono Intereses',' 	Abono Capitál','Nuevo Saldo');
+    $filas = $plazo+1;
+    $columnas = count($titulos);
+
 
     echo "Cedula: $cedula <br /><br />";
     echo "Nombre: $nombre <br /><br />";
@@ -31,55 +35,68 @@
     $cuota = number_format($cuotaFija, 2, '.', '');
 
     echo "Cuota: $ $cuota <br /><br />";
+    $saldoAnterior = $monto;
+    $saldoAnterior = $saldoAnterior - $abonoCapital;
+    $abonoIntereses = ($saldoAnterior * $interes)/100;
+    $abonoCapital = $cuotaFija - $abonoIntereses;
+    $nuevoSaldo = $saldoAnterior - $abonoCapital;
+    echo "Saldo anterior: $saldoAnterior<br />";
+    echo "Abono Intereses: $abonoIntereses<br />";
+    echo "Abono Capital: $abonoCapital<br />";
+    echo "Nuevo Saldo: $nuevoSaldo<br />";
 
     ?>
   </head>
   <body>
 
-<?php
-  for ($i=0; $i < $plazo+1; $i++) {
-    // code...
-    echo "cuotas <br />";
-  }
- ?>
+   <!--
+   Saldo anterior   =
+   Valor Cuota Fija
+   Abono Intereses  = (saldo anterior * tasa intereses) / 100
+   Abono Capital    = cuita fina - abono intereses
+   Nuevo Saldo      = saldo anterior - abono capital
+
+
+   --------------------------------------------------------------->
 
      <div class="container">
 
      <table class="table table-dark">
-       <thead>
-         <tr>
-           <th scope="col">Cedula</th>
-           <th scope="col">Nombre</th>
-           <th scope="col">Monto</th>
-           <th scope="col">Interes</th>
-           <th scope="col">Plazo</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <th scope="row"><?php $nombre ?></th>
-           <td>Mark</td>
-           <td>Otto</td>
-           <td>@mdo</td>
-           <td>sdsdf</td>
-         </tr>
-         <tr>
-           <th scope="row">2</th>
-           <td>Jacob</td>
-           <td>Thornton</td>
-           <td>@fat</td>
-         </tr>
-         <tr>
-           <th scope="row">3</th>
-           <td>Larry</td>
-           <td>the Bird</td>
-           <td>@twitter</td>
-         </tr>
-       </tbody>
-     </table>
+       <?php
+           for ($i=0; $i < $filas; $i++) {
+             echo "<thead><tr>";
 
-    </div>
+                  for ($j=0; $j < $columnas; $j++) {
+                    if ($i==0) {
+                      echo "<td> $titulos[$j] </td>";
+                    }elseif($i>0&& $j==0){
+                      echo "<td> $i </td>";
+                    }elseif($i>0&& $j==1){
+                      echo "<td>".$cuotaSaldoAnterior = number_format($saldoAnterior, 2, '.', '');
+                       $saldoAnterior = $saldoAnterior - $abonoCapital ."</td>";
+                     }elseif($i>0&& $j==2){
+                       echo "<td>$cuota</td>";
+                     }elseif($i>0&& $j==3){
+                       echo "<td>".$r =  number_format((($saldoAnterior * $interes)/100), 2, '.', '');
+                       $t = ($saldoAnterior * $interes)/100 ."</td>";
+                     }elseif($i>0&& $j==4){
+                       echo "<td>$cuota</td>";
+                     }elseif($i>0&& $j==5){
+                       echo "<td>$cuota</td>";
+                     }
+                    else {
+                      echo "<td>I: $i// J: $j-----</td>";
+                    }
+                  }
+              echo "</tr></thead>";
+           }
 
+        ?>
+
+
+        </table>
+
+    <!---------------------------------------------------------------------------------------------------------->
 
 
     <a href="../index.html"><button type="button" name="regresar">Regresar</button></a>
